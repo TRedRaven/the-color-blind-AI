@@ -24,6 +24,19 @@ class neural_net():
         # the mini batch data, default size is 100
         self.minibatch = gmb.update_minibatch()
 
+        # initializing layers as 3 inputs 1 hidden with 8 neurons and 5 outputs
+        self.layers = (3, 8, 5)
+
+        # generating the weights and biases
+        self.biases = [np.random.randn(y, 1) for y in self.layers[1:]]
+        self.weights = [np.random.randn(x, y) for x, y in zip(self.layers[:-1], self.layers[1:])]
+
+        # debug printing the biases and weights
+        if self.debug:
+            print "starting biases: %s" % self.biases
+            print "starting weights: %s" % self.weights
+
+
 # only run when this file is being called specificly. so it doesn't
 # trigger when the file is being imported
 if __name__ == "__main__":
@@ -37,4 +50,4 @@ if __name__ == "__main__":
 
     options, remainder = parser.parse_args()
     net = neural_net(options)
-    print "minibatch: %s" % net.minibatch
+    
