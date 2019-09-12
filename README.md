@@ -47,3 +47,19 @@ awnser.
 ## dependencies
 - python 2.7
 - numpy 1.16.5 or higher
+
+## discovery log
+a log of all the stuff i found out while trying to get it right
+
+commit 12: <br/>
+in all previous attempts whenever i would call the feedforward method
+i would get weird outputs such as a 2 dim array with in the 1st dim 8
+arrays with 8 values which should have been a 1 dim array with 8 values
+apparently this was caused by the biases being a 2 dim array with in the 1st dim arrays with 1 value. it would take that one value and multiply it with every value of the output of the np.dot() function
+which would cause the weird output. so i changed:
+
+- self.biases = [np.random.randn(y, 1) for y in self.layers[1:]] <br/>
+to
+- self.biases = [np.random.randn(1, y) for y in self.layers[1:]] <br/>
+
+and now it gives good outputs

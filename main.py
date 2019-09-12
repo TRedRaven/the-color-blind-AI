@@ -27,30 +27,42 @@ class neural_net():
         # the amount it will train
         self.train_amount = options.train_amount
         # the mini batch data, default size is 100
-        self.minibatch = gmb.update_minibatch()
+        self.minibatch = gmb.update_minibatch(1)
 
         # initializing layers as 3 inputs 1 hidden with 8 neurons and 5 outputs
         self.layers = (3, 8, 5)
 
         # generating the weights and biases
-        self.biases = [np.random.randn(y, 1) for y in self.layers[1:]]
+        self.biases = [np.random.randn(1, y) for y in self.layers[1:]]
         self.weights = [np.random.randn(x, y) for x, y in zip(self.layers[:-1], self.layers[1:])]
 
         # debug printing the biases and weights
         if self.debug:
-            print "starting biases: %s" % self.biases
-            print "starting weights: %s" % self.weights
+            print "starting biases: %s\n" % self.biases
+            print "starting weights: %s\n" % self.weights
 
-    def feedforward(self, a):
+        if not self.train_amount == None:
+            for i in range(self.train_amount):
+                self.train()
+
+    def feedforward(self, activation):
         """this will do in this case two matrix multiplecations
-        bases on the column of activations given in the arugment `a`
-        and self.weights as a matrix to compair it to and add the biases,
-        the formula looks like:
-        a = S(a0w0+a0w1+a0w2+a0w3+b)
+        bases on the column of activations given in the arugment `activation`
+        and self.weights as a matrix to compair it to and add the biases.
         """
         for b, w in zip(self.biases, self.weights):
-            a = sigmoid(np.dot(w, a)+b)
-        return a
+            activation = sigmoid(np.dot(activation, w) + b)
+        return activation
+
+    def train(self):
+        """this will train the network for the amount of time set in the `-T` argument"""
+        for data in self.minibatch:
+            input = sigmoid(data[0]) # putting the normalized rgb value in input
+            awnser = data[1] # the index of the value that should be 1
+            output = self.feedforward(input)
+            if self.debug:
+                print "input | awnser: %s | %s" % (input, awnser)
+                print "output: %s" % output
 
 # only run when this file is being called specificly. so it doesn't
 # trigger when the file is being imported
