@@ -13,6 +13,11 @@ import numpy as np # numpy is for the matrix multiplecation and array generatati
 import optparse # used for making the network a bit more controleble
 import gen_minibatch as gmb # the minibatch creation script
 
+# miscellaneous fucntions
+def sigmoid(x):
+    """will take a int and normalize it returning something inbetween 0 and 1"""
+    return 1 / (1 + np.exp(-x))
+
 class neural_net():
     """neural_net takes 1 arugment and that is the options from optparse"""
     def __init__(self, options):
@@ -36,7 +41,6 @@ class neural_net():
             print "starting biases: %s" % self.biases
             print "starting weights: %s" % self.weights
 
-
 # only run when this file is being called specificly. so it doesn't
 # trigger when the file is being imported
 if __name__ == "__main__":
@@ -50,4 +54,3 @@ if __name__ == "__main__":
 
     options, remainder = parser.parse_args()
     net = neural_net(options)
-    
