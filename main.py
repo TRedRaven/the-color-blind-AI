@@ -41,6 +41,17 @@ class neural_net():
             print "starting biases: %s" % self.biases
             print "starting weights: %s" % self.weights
 
+    def feedforward(self, a):
+        """this will do in this case two matrix multiplecations
+        bases on the column of activations given in the arugment `a`
+        and self.weights as a matrix to compair it to and add the biases,
+        the formula looks like:
+        a = S(a0w0+a0w1+a0w2+a0w3+b)
+        """
+        for b, w in zip(self.biases, self.weights):
+            a = sigmoid(np.dot(w, a)+b)
+        return a
+
 # only run when this file is being called specificly. so it doesn't
 # trigger when the file is being imported
 if __name__ == "__main__":
