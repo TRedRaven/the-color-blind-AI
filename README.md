@@ -20,13 +20,27 @@ will use the librarie numpy.
 
 To create the datasets and minibatches there will be a script to
 make a dataset that looks like this: <br/>
-`[[array([ 40, 239,  36]), 1],
-  [array([223, 224, 212]), 4],
-  [array([208,  27,  54]), 0],
-  [array([237, 208, 233]), 4],
-  [array([ 0, 11, 11]), 3],
-  [array([  9, 210,  53]), 1],
-  [array([ 5, 21, 53]), 3]]`<br/>
+`[[array([[227],
+       [243],
+       [242]]), 4], [array([[  6],
+       [225],
+       [ 20]]), 1], [array([[ 36],
+       [  5],
+       [241]]), 2], [array([[19],
+       [10],
+       [46]]), 3], [array([[  8],
+       [ 34],
+       [216]]), 2], [array([[253],
+       [216],
+       [220]]), 4], [array([[216],
+       [248],
+       [240]]), 4], [array([[248],
+       [ 32],
+       [ 44]]), 0], [array([[ 15],
+       [212],
+       [ 24]]), 1], [array([[239],
+       [212],
+       [216]]), 4]]`<br/>
 with the second entry in the second layer of the matrix being the correct
 awnser.
 
