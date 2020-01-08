@@ -6,6 +6,9 @@
         use `-D` for debug mode, this will print thing like the current weights and biases.
         set `--data <RRGB>, <G>, <B>` with R, G and B being numbers between 0 and 255 to
         give the network a custom set inputs to see what it thinks is the right awnser,
+
+	Added to test branch.
+
 """
 
 # imports
